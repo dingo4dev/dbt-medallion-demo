@@ -189,6 +189,28 @@ dbt run --models gold_customer_summary
 dbt test --models silver_customers
 ```
 
+## 📊 View the Demo
+
+### 🎨 Modern UI (43KB - NEW!)
+Open `demo/modern-docs.html` in your browser to see the modern, lightweight alternative!
+
+**Features:**
+- ✨ Single HTML file (43KB vs 1.7MB default)
+- 🎨 Modern, clean interface with Tailwind CSS
+- 🌙 Dark mode support
+- 📊 Dashboard with real-time stats
+- 🔍 Live search across models, sources, and tests
+- 📱 Fully responsive design
+
+Check out [dbt-docs-modern](https://github.com/dingo4dev/dbt-docs-modern) for more details!
+
+### Traditional dbt Docs
+```bash
+dbt docs serve --profiles-dir .
+```
+
+Or view the pre-generated version at `target/index.html`.
+
 ## 📚 Learn More
 
 - [dbt Documentation](https://docs.getdbt.com/)
