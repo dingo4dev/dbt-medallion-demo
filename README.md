@@ -57,13 +57,26 @@ A demo dbt project showcasing the **Medallion Architecture** (Bronze → Silver 
 ## 🚀 Quick Start
 
 ### Prerequisites
+
+**Install uv (fast Python package manager):**
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install dbt-duckdb pre-commit
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 ### Setup
+
+```bash
+# Create virtual environment
+uv venv
+
+# Activate it
+source .venv/bin/activate
+
+# Install dependencies (much faster than pip!)
+uv pip install -r requirements.txt
+# or
+uv pip install dbt-duckdb pre-commit
+```
 ```bash
 # Install dependencies
 dbt deps
@@ -124,6 +137,7 @@ dbt-medallion-demo/
 - **dbt-duckdb**: 1.10.x
 - **DuckDB**: In-process SQL OLAP database
 - **Python**: 3.12+
+- **uv**: Fast Python package manager
 - **pre-commit**: Git hooks for code quality
 
 ## 📝 Best Practices Implemented
@@ -136,6 +150,7 @@ dbt-medallion-demo/
 ✅ **Testing** - Schema tests and custom data quality tests
 ✅ **Documentation** - Inline docs and descriptions
 ✅ **Version Control** - Pre-commit hooks for consistency
+✅ **Modern Tooling** - Uses `uv` for fast dependency management
 
 ## 🔍 Example Queries
 
