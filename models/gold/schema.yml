@@ -1,0 +1,88 @@
+version: 2
+
+models:
+  - name: gold_customer_summary
+    description: "Gold layer: Customer analytics with lifetime metrics and segmentation"
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier"
+        tests:
+          - not_null
+          - unique
+      - name: customer_name
+        description: "Customer full name"
+      - name: email
+        description: "Customer email address"
+      - name: country
+        description: "Customer country"
+      - name: signup_date
+        description: "Date when customer signed up"
+      - name: total_orders
+        description: "Total number of orders (all statuses)"
+      - name: completed_orders
+        description: "Number of completed orders"
+      - name: total_revenue
+        description: "Total revenue from completed orders"
+      - name: avg_order_value
+        description: "Average value of completed orders"
+      - name: first_order_date
+        description: "Date of first order"
+      - name: last_order_date
+        description: "Date of most recent order"
+      - name: customer_segment
+        description: "Customer segment (No Orders/One-Time Buyer/Regular/VIP)"
+        tests:
+          - accepted_values:
+              values: ['No Orders', 'One-Time Buyer', 'Regular Customer', 'VIP Customer']
+      - name: days_since_last_order
+        description: "Days since last order (NULL if no orders)"
+      - name: revenue_per_completed_order
+        description: "Average revenue per completed order"
+
+  - name: gold_daily_sales
+    description: "Gold layer: Daily sales metrics and KPIs"
+    columns:
+      - name: order_date
+        description: "Order date"
+        tests:
+          - not_null
+          - unique
+      - name: unique_customers
+        description: "Number of unique customers who placed orders"
+      - name: total_orders
+        description: "Total number of orders"
+      - name: completed_orders
+        description: "Number of completed orders"
+      - name: pending_orders
+        description: "Number of pending orders"
+      - name: cancelled_orders
+        description: "Number of cancelled orders"
+      - name: daily_revenue
+        description: "Total revenue from completed orders"
+      - name: avg_order_value
+        description: "Average order value for completed orders"
+      - name: min_order_value
+        description: "Minimum completed order value"
+      - name: max_order_value
+        description: "Maximum completed order value"
+
+  - name: gold_country_summary
+    description: "Gold layer: Country-level revenue and customer analytics"
+    columns:
+      - name: country
+        description: "Country name"
+        tests:
+          - not_null
+          - unique
+      - name: total_customers
+        description: "Total number of customers in country"
+      - name: total_orders
+        description: "Total number of orders from country"
+      - name: completed_orders
+        description: "Number of completed orders from country"
+      - name: total_revenue
+        description: "Total revenue from completed orders"
+      - name: avg_order_value
+        description: "Average order value for completed orders"
+      - name: revenue_per_customer
+        description: "Average revenue per customer"

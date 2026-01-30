@@ -1,0 +1,69 @@
+version: 2
+
+models:
+  - name: bronze_customers
+    description: "Bronze layer: Raw customer data with ingestion metadata"
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier"
+        tests:
+          - not_null
+          - unique
+      - name: customer_name
+        description: "Customer full name"
+        tests:
+          - not_null
+      - name: email
+        description: "Customer email address"
+        tests:
+          - not_null
+      - name: country
+        description: "Customer country"
+      - name: signup_date
+        description: "Date when customer signed up"
+      - name: _loaded_at
+        description: "Timestamp when data was loaded"
+      - name: _batch_id
+        description: "Batch ID for data lineage tracking"
+
+  - name: bronze_orders
+    description: "Bronze layer: Raw order data with ingestion metadata"
+    columns:
+      - name: order_id
+        description: "Unique order identifier"
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: "Reference to customer"
+        tests:
+          - not_null
+      - name: order_date
+        description: "Date when order was placed"
+      - name: order_amount
+        description: "Order total amount"
+      - name: status
+        description: "Order status (completed/pending/cancelled)"
+      - name: _loaded_at
+        description: "Timestamp when data was loaded"
+      - name: _batch_id
+        description: "Batch ID for data lineage tracking"
+
+  - name: bronze_products
+    description: "Bronze layer: Raw product data with ingestion metadata"
+    columns:
+      - name: product_id
+        description: "Unique product identifier"
+        tests:
+          - not_null
+          - unique
+      - name: product_name
+        description: "Product name"
+      - name: category
+        description: "Product category"
+      - name: price
+        description: "Product price"
+      - name: _loaded_at
+        description: "Timestamp when data was loaded"
+      - name: _batch_id
+        description: "Batch ID for data lineage tracking"

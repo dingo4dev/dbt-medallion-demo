@@ -1,0 +1,80 @@
+version: 2
+
+models:
+  - name: silver_customers
+    description: "Silver layer: Cleaned and validated customer data with standardized formats"
+    columns:
+      - name: customer_id
+        description: "Unique customer identifier"
+        tests:
+          - not_null
+          - unique
+      - name: customer_name
+        description: "Customer full name (uppercase, trimmed)"
+        tests:
+          - not_null
+      - name: email
+        description: "Customer email address (lowercase, trimmed, validated)"
+        tests:
+          - not_null
+      - name: country
+        description: "Customer country (uppercase, trimmed)"
+      - name: signup_date
+        description: "Date when customer signed up"
+        tests:
+          - not_null
+
+  - name: silver_orders
+    description: "Silver layer: Cleaned and validated order data with business flags"
+    columns:
+      - name: order_id
+        description: "Unique order identifier"
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: "Reference to customer"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('silver_customers')
+              field: customer_id
+      - name: order_date
+        description: "Date when order was placed"
+        tests:
+          - not_null
+      - name: order_amount
+        description: "Order total amount (rounded to 2 decimals)"
+        tests:
+          - not_null
+      - name: status
+        description: "Order status (lowercase, trimmed)"
+        tests:
+          - accepted_values:
+              values: ['completed', 'pending', 'cancelled']
+      - name: is_completed
+        description: "Boolean flag indicating if order is completed"
+
+  - name: silver_products
+    description: "Silver layer: Cleaned and validated product data with derived attributes"
+    columns:
+      - name: product_id
+        description: "Unique product identifier"
+        tests:
+          - not_null
+          - unique
+      - name: product_name
+        description: "Product name (trimmed)"
+        tests:
+          - not_null
+      - name: category
+        description: "Product category (trimmed)"
+      - name: price
+        description: "Product price (rounded to 2 decimals)"
+        tests:
+          - not_null
+      - name: price_tier
+        description: "Price tier classification (Budget/Mid-Range/Premium)"
+        tests:
+          - accepted_values:
+              values: ['Budget', 'Mid-Range', 'Premium']

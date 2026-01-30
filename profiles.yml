@@ -1,0 +1,17 @@
+medallion_demo:
+  outputs:
+    dev:
+      type: duckdb
+      path: 'medallion.duckdb'
+      threads: 4
+      extensions:
+        - parquet
+        - httpfs
+    prod:
+      type: duckdb
+      path: 'prod_medallion.duckdb'
+      threads: 4
+      extensions:
+        - parquet
+        - httpfs
+  target: dev

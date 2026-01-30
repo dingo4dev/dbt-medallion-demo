@@ -1,0 +1,29 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: check-merge-conflict
+      - id: check-case-conflict
+
+  # - repo: https://github.com/dbt-checkpoint/dbt-checkpoint
+  #   rev: v2.1.1
+  #   hooks:
+  #     - id: check-model-has-description
+  #     - id: check-model-has-tests
+  #       args: ["--test-cnt", "1", "--"]
+  #     - id: check-model-columns-have-desc
+  #     - id: dbt-compile
+  #     - id: dbt-test
+
+  # - repo: https://github.com/sqlfluff/sqlfluff
+  #   rev: 3.3.1
+  #   hooks:
+  #     - id: sqlfluff-lint
+  #       args: [--dialect, duckdb]
+  #     - id: sqlfluff-fix
+  #       args: [--dialect, duckdb]
